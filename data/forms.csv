@@ -1,0 +1,7 @@
+name,eco,meta,comp,repro,deve,auto,weight,core,scan
+form zero,i,0,0,0,0,0,0,this is a core sample of form 0,this is a scan result of a sample of form 0 with 0 weight
+form one,i,0,0,0,0,1,0.2,this is a core sample of form 1,this is a scan result of a sample of form 1 with 0.2 weight
+form two,b,0,0,0,1,1,0.4,this is a core sample of form 2,this is a scan result of a sample of form 2 with 0.4 weight
+form three,b,0,0,1,1,1,0.6,this is a core sample of form 3,this is a scan result of a sample of form 3 with 0.6 weight
+form four,r,0,1,1,1,1,0.8,this is a core sample of form 4,this is a scan result of a sample of form 4 with 0.8 weight
+form five,r,1,1,1,1,1,1,this is a core sample of form 5,this is a scan result of a sample of form 5 with 1 weight
