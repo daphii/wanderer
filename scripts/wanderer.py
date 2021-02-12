@@ -8,14 +8,15 @@ from bodies import Body
 from bodies import bodies_dict
 from forms import Form
 from forms import forms_dict
-from story import stories_dict
+from dialogue import Dialogue
+from dialogue import dialogue_dict
 from art import art_dict
 
 from scan import run as scan
 from analyze import run as analyze
 
 # window sizing (working, keep off for testing in hyper)
-os.system("mode con lines=40 cols=80")
+os.system("mode con lines=35 cols=80")
 # screen clearing
 clear = lambda: os.system('cls')
 
@@ -90,13 +91,49 @@ def slowprint(s):
   for c in s + '\n':
     sys.stdout.write(c)
     sys.stdout.flush()
-    time.sleep(1./30)
+    time.sleep(1./40)
 
-menu1 = [stories_dict['start'], art_dict['aurora'], stories_dict['subtitle']]
-menu2 = [stories_dict['end']]
-menu3 = [stories_dict['art_credits'], '\n', stories_dict['game_credits'], '\n']
-menu4 = [stories_dict['bibliography'], '\n']
-menu5 = []
+def slowdisplay(menu):
+    for item in menu:
+        item.typeprint
+
+def earthlaunch():
+    for i in range(30,-1,-1):
+        output = str(i)
+        
+        if output == '30':
+            dialogue_dict['08'].typeprint()
+        
+        elif output == '16':
+            dialogue_dict['09'].typeprint()
+        
+        elif output == '10':
+            dialogue_dict['10'].typeprint()
+        
+        elif output == '6':
+            dialogue_dict['11'].typeprint()
+        
+        elif output == '0':
+            dialogue_dict['12'].typeprint()
+            dialogue_dict['13'].typeprint()
+            time.sleep(1)
+            dialogue_dict['14'].splashprint()
+            time.sleep(4)
+            dialogue_dict['15'].splashprint()
+            time.sleep(4)
+            dialogue_dict['16'].splashprint()
+            time.sleep(6)
+            dialogue_dict['17'].splashprint()
+
+        else:
+            slowprint(output)
+            time.sleep(.9)
+
+menu1 = [dialogue_dict['01'], art_dict['aurora'], dialogue_dict['02']]
+menu2 = [dialogue_dict['06']]
+menu3 = [dialogue_dict['03'], '\n', dialogue_dict['04'], '\n']
+menu4 = [dialogue_dict['05'], '\n']
+
 
 play = 1
 brakes = 0
@@ -134,12 +171,15 @@ while play == 1:
     while menu_code == 2:
         clear()
         display(menu2)
-        print("\nenter 'exit' to terminate program")
+        print("\nenter 'exit' to terminate program or 'menu' to return to tha main menu")
         user = input('---{ ')
 
         if user == 'exit':
             menu_code = 0
             play = 0
+
+        if user == 'menu':
+            menu_code = 1
 
     while menu_code == 3:
         clear()
@@ -163,12 +203,12 @@ while play == 2:
 
     while menu_code == 5:
         clear()
-        slowprint('let the game begin')
+        time.sleep(2)
+        dialogue_dict['07'].typeprint()
+        time.sleep(2)
+        earthlaunch()
+        time.sleep(6)
+        clear()
 
-    
-    # for loop safety, delete when there is an exit
-        if brakes > 50:
-            print("hit the brakes!")
-            play = 0
+
         
-        brakes += 1

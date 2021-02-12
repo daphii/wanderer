@@ -10,11 +10,6 @@ subtitle = '''Created for HPS351 as a final project in spring 2021
 '''
 stories_dict['subtitle'] = subtitle
 
-
-welcome = '''Welcome home Wanderer!'''
-stories_dict['welcome'] = welcome
-
-
 art_credits = '''Art:
 
 Huge thanks to Christopher Johnson's ASCII Art Collection - https://asciiart.website/index.php
@@ -43,3 +38,11 @@ Ward, Peter. 2007. Life as we do not know it. Toronto: Penguin Books.
 
 '''
 stories_dict['bibliography'] = bibliography
+
+launch = '''You hear the sound of the crackling radio in your helmet...
+
+'''
+stories_dict['launch'] = launch
+
+
+
