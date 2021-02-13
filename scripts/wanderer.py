@@ -10,6 +10,8 @@ from forms import Form
 from forms import forms_dict
 from dialogue import Dialogue
 from dialogue import dialogue_dict
+from dialogue import slowprint
+from dialogue import speedprint
 from art import art_dict
 
 from scan import run as scan
@@ -87,12 +89,6 @@ def display(menu):
     for item in menu:
         print(item)
 
-def slowprint(s):
-  for c in s + '\n':
-    sys.stdout.write(c)
-    sys.stdout.flush()
-    time.sleep(1./40)
-
 def slowdisplay(menu):
     for item in menu:
         item.typeprint
@@ -102,10 +98,10 @@ def earthlaunch():
         output = str(i)
         
         if output == '30':
-            dialogue_dict['08'].typeprint()
+            dialogue_dict['8'].typeprint()
         
         elif output == '16':
-            dialogue_dict['09'].typeprint()
+            dialogue_dict['9'].typeprint()
         
         elif output == '10':
             dialogue_dict['10'].typeprint()
@@ -115,96 +111,126 @@ def earthlaunch():
         
         elif output == '0':
             dialogue_dict['12'].typeprint()
-            dialogue_dict['13'].typeprint()
-            time.sleep(1)
+            dialogue_dict['13'].typeprint(2)
+            time.sleep(2)
             dialogue_dict['14'].splashprint()
             time.sleep(4)
             dialogue_dict['15'].splashprint()
             time.sleep(4)
             dialogue_dict['16'].splashprint()
-            time.sleep(6)
+            time.sleep(4)
             dialogue_dict['17'].splashprint()
 
         else:
-            slowprint(output)
+            clean = " " + output
+            slowprint(clean)
             time.sleep(.9)
-
-menu1 = [dialogue_dict['01'], art_dict['aurora'], dialogue_dict['02']]
-menu2 = [dialogue_dict['06']]
-menu3 = [dialogue_dict['03'], '\n', dialogue_dict['04'], '\n']
-menu4 = [dialogue_dict['05'], '\n']
-
 
 play = 1
 brakes = 0
 menu_code = 1
+first_load = 1
 while play == 1:
     
-    while menu_code == 1:
+    # main menu first load
+    while menu_code == 1 and first_load == 0:
         clear()
-        display(menu1)
+        time.sleep(.5)
+        dialogue_dict['1'].typeprint()
+        speedprint(art_dict['aurora'])
+        dialogue_dict['2'].typeprint()
+        choice_list('play', 'credits', 'exit')
+        first_load = 1
+        user = input('---{ ')
+
+        if user == '1':
+            menu_code = 6
+            play = 2
+
+        if user == '2':
+            menu_code = 2
+
+        if user == '3':
+            menu_code = 5
+
+    # main menu consecutive load
+    while menu_code == 1 and first_load == 1:
+        clear()
+        dialogue_dict['1'].splashprint()
+        print(art_dict['aurora'])
+        dialogue_dict['2'].splashprint()
         choice_list('play', 'credits', 'exit')
         user = input('---{ ')
 
         if user == '1':
-            menu_code = 5
+            menu_code = 6
             play = 2
 
         if user == '2':
-            clear()
-            display(menu1)
-            choice_list('art & game credits', 'bibliography', 'back')
-            user = input('---{ ')
-
-            if user == '1':
-                menu_code = 3
-
-            if user == '2':
-                menu_code = 4
-
-            if user == '3':
-                menu_code = 1
+            menu_code = 2
 
         if user == '3':
-            menu_code = 2
+            menu_code = 5    
     
+    # credits menu
     while menu_code == 2:
         clear()
-        display(menu2)
-        print("\nenter 'exit' to terminate program or 'menu' to return to tha main menu")
+        dialogue_dict['1'].splashprint()
+        print(art_dict['aurora'])
+        dialogue_dict['2'].splashprint()
+        choice_list('art & game credits', 'bibliography', 'back')
+        user = input('---{ ') 
+
+        if user == '1':
+            menu_code = 3
+
+        if user == '2':
+            menu_code = 4
+
+        if user == '3':
+            menu_code = 1
+
+    # art & game credits
+    while menu_code == 3:
+        clear()
+        dialogue_dict['3'].splashprint(1)
+        dialogue_dict['4'].splashprint(1)
+        choice_list('back')
         user = input('---{ ')
 
-        if user == 'exit':
+        if user == '1':
+            menu_code = 2
+
+    # bibliography     
+    while menu_code == 4:
+        clear()
+        dialogue_dict['5'].splashprint(1)
+        choice_list('back')
+        user = input('---{ ')
+
+        if user == '1':
+            menu_code = 2
+
+    # exit screen
+    while menu_code == 5:
+        clear()
+        dialogue_dict['6'].splashprint(1)
+        choice_list('exit', 'back')
+        user = input('---{ ')
+
+        if user == '1':
             menu_code = 0
             play = 0
 
-        if user == 'menu':
-            menu_code = 1
-
-    while menu_code == 3:
-        clear()
-        display(menu3)
-        choice_list('main menu')
-        user = input('---{ ')
-
-        if user == '1':
-            menu_code = 1
-
-    while menu_code == 4:
-        clear()
-        display(menu4)
-        choice_list('main menu')
-        user = input('---{ ')
-
-        if user == '1':
+        if user == '2':
             menu_code = 1
         
 while play == 2:
 
-    while menu_code == 5:
+    while menu_code == 6:
         clear()
         time.sleep(2)
-        dialogue_dict['07'].typeprint()
+        dialogue_dict['7'].typeprint(2)
         time.sleep(2)
         earthlaunch()
         time.sleep(6)

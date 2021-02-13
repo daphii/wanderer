@@ -15,7 +15,13 @@ def slowprint(s):
   for c in s + '\n':
     sys.stdout.write(c)
     sys.stdout.flush()
-    time.sleep(1./40)
+    time.sleep(.035)
+
+def speedprint(s):
+  for c in s + '\n':
+    sys.stdout.write(c)
+    sys.stdout.flush()
+    time.sleep(.01)
 
 class Dialogue:
 
@@ -32,13 +38,19 @@ class Dialogue:
     def __repr__(self):
         return self.msg
 
-    def splashprint(self):
-        print(self.msg)
-        print('\n')
+    def splashprint(self, breaks=0):
+        clean = " " + self.msg
+        print(clean)
+        if breaks > 0:
+            for i in range(breaks):
+                print('\n')
 
-    def typeprint(self):
-        slowprint(self.msg)
-        print('\n')
+    def typeprint(self, breaks=0):
+        clean = " " + self.msg
+        slowprint(clean)
+        if breaks > 0:
+            for i in range(breaks):
+                print('\n')
 
             
 dialogue_dict = {}
