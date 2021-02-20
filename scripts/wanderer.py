@@ -129,7 +129,7 @@ def earthlaunch():
 play = 1
 brakes = 0
 menu_code = 1
-first_load = 1
+first_load = 0  # Leave as 0 for testing
 while play == 1:
     
     # main menu first load
