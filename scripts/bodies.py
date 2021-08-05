@@ -41,7 +41,7 @@ for body in bodies_data_dict:
     bodies_dict[body] = Body(name, state, diameter, parent, distance, orbit, discovered, discoverer, text)
 
 
-#new_var = bodies_dict['Earth']
-#print("\n")
-#print(new_var.orbit)
+new_var = bodies_dict['Cupid']
+print("\n")
+print(new_var.orbit)
 
